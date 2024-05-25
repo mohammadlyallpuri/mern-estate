@@ -32,7 +32,7 @@ function Header() {
             <Link to='/profile'>
               {currentUser ? (
                 // Added alt text for the image and a fallback in case avatar is not available
-                <img className='rouded-full h-7 w-7
+                <img className='rounded-full h-7 w-7
                 object-cover  ' src={currentUser.avatar || '/default-avatar.png'} alt='profile'  />
               ) : (
                 'Sign in'
