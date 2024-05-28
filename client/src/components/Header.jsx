@@ -1,10 +1,15 @@
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 function Header() {
-  // Corrected useSelector syntax to properly access state
-  const currentUser = useSelector(state => state.user.currentUser);
+  const currentUserFromStore = useSelector(state => state.user.currentUser);
+  const [currentUser, setCurrentUser] = useState(currentUserFromStore);
+
+  useEffect(() => {
+    setCurrentUser(currentUserFromStore);
+  }, [currentUserFromStore]);
 
   return (
     <header className='bg-slate-200 shadow-md'>
@@ -31,9 +36,7 @@ function Header() {
           <li className='text-slate-700 hover:underline'>
             <Link to='/profile'>
               {currentUser ? (
-                // Added alt text for the image and a fallback in case avatar is not available
-                <img className='rounded-full h-7 w-7
-                object-cover  ' src={currentUser.avatar || '/default-avatar.png'} alt='profile'  />
+                <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar || '/default-avatar.png'} alt='profile'  />
               ) : (
                 'Sign in'
               )}
