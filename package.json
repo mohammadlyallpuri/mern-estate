@@ -5,9 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon api/index.js",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "start": "node api/index.js",
-    "buid": "npm install && npm install --prefix && npm run build --prefix client"
+    "build": "npm install && npm run build:frontend && npm run build:backend",
+    "dev:frontend": "vite",
+    "dev:backend": "nodemon api/index.js",
+    "build:frontend": "vite build",
+    "build:backend": "echo 'No build steps defined for the backend'"
+    
   },
   "keywords": [],
   "author": "",
